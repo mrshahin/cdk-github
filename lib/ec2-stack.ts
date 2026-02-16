@@ -20,6 +20,7 @@ export class Ec2Stack extends cdk.Stack {
 
     // Open only SSH port for now
     sg.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(22), 'Allow SSH');
+    sg.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP');
 
     // Use existing AWS keypair
     const keyPair = ec2.KeyPair.fromKeyPairName(this, 'KeyPair', 'ec2-demo-key');
